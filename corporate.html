@@ -1,0 +1,2753 @@
+{% load static %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+  <title>NUBERRY</title>
+     <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{% static 'assets/corp/style5.css' %}">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<style>
+
+.cube {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  background: #FED74C;
+  -webkit-animation: move 3s ease-in-out infinite;
+          animation: move 3s ease-in-out infinite;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  box-shadow: 5em 5em .3em .1em #DBDBDB;
+}
+.cube::before, .cube::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.cube::before {
+  background-color: #C97431;
+  -webkit-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+  -webkit-transform: rotateY(-90deg);
+          transform: rotateY(-90deg);
+}
+.cube::after {
+  background-color: #E7A22B;
+  -webkit-transform-origin: 0% 100%;
+          transform-origin: 0% 100%;
+  -webkit-transform: rotateX(90deg);
+          transform: rotateX(90deg);
+}
+.cube:nth-of-type(1) {
+  -webkit-animation-delay: -11.25s;
+          animation-delay: -11.25s;
+}
+.cube:nth-of-type(2) {
+  -webkit-animation-delay: -10.5s;
+          animation-delay: -10.5s;
+}
+.cube:nth-of-type(3) {
+  -webkit-animation-delay: -9.75s;
+          animation-delay: -9.75s;
+}
+.cube:nth-of-type(4) {
+  -webkit-animation-delay: -9s;
+          animation-delay: -9s;
+}
+@-webkit-keyframes move {
+  0%,
+    87.5%,
+    100% {
+    -webkit-transform: translate(1em, 0em);
+            transform: translate(1em, 0em);
+  }
+  12.5% {
+    -webkit-transform: translate(2em, 0em);
+            transform: translate(2em, 0em);
+  }
+  25% {
+    -webkit-transform: translate(2em, 1em);
+            transform: translate(2em, 1em);
+  }
+  37.5%, 
+    50% {
+    -webkit-transform: translate(1em, 1em);
+            transform: translate(1em, 1em);
+  }
+  62.5% {
+    -webkit-transform: translate(0em, 1em);
+            transform: translate(0em, 1em);
+  }
+  75% {
+    -webkit-transform: translate(0em, 0em);
+            transform: translate(0em, 0em);
+  }
+}
+@keyframes move {
+  0%,
+    87.5%,
+    100% {
+    -webkit-transform: translate(1em, 0em);
+            transform: translate(1em, 0em);
+  }
+  12.5% {
+    -webkit-transform: translate(2em, 0em);
+            transform: translate(2em, 0em);
+  }
+  25% {
+    -webkit-transform: translate(2em, 1em);
+            transform: translate(2em, 1em);
+  }
+  37.5%, 
+    50% {
+    -webkit-transform: translate(1em, 1em);
+            transform: translate(1em, 1em);
+  }
+  62.5% {
+    -webkit-transform: translate(0em, 1em);
+            transform: translate(0em, 1em);
+  }
+  75% {
+    -webkit-transform: translate(0em, 0em);
+            transform: translate(0em, 0em);
+  }
+}
+.load-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 3em;
+  height: 2em;
+  margin: 30vmin auto;
+  font-size: 50px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: rotateX(60deg) rotateZ(45deg);
+          transform: rotateX(60deg) rotateZ(45deg);
+}
+.load-box:hover * {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.load-box:active * {
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+/* Animation */
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+#wrapper-box {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+#boxw {
+  width: 320px;
+  height: auto;
+  margin: 0 auto;
+  background: #fff;
+  border: thin solid #ededed;
+}
+
+#boxw > img {
+  width: 16px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 30px 0 20px 0;
+}
+
+#boxw > h3 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+  margin: 0 0 35px 0;
+}
+
+#boxw > form {
+  width: 100%;
+  height: auo;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#boxw > form > input {
+  display: inline-block;
+  width: 260px;
+  height: 50px;
+  margin: 5px auto;
+  padding: 15px;
+  boxw-sizing: border-boxw;
+  font-size: 0.8em;
+  border: 1.5px solid #cccccc;
+  transition: all 0.2s ease;
+}
+
+#boxw > form > input:focus {
+  border: thin solid #015b7e;
+  outline: none;
+}
+
+::-webkit-input-placeholder {
+  color: #ccc;
+  font-weight: 700;
+  font-size: 0.9em;
+}
+
+#boxw > a {
+  display: block;
+  margin: 0;
+  padding: 5px 0 15px 0;
+  width: 260px;
+  height: 20px;
+  margin: 0 auto;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  color: #ccc;
+  font-weight: 400;
+}
+
+#boxw > input {
+  width: 260px;
+  height: 50px;
+  background: #015b7e;
+  border: none;
+  outline: none;
+  margin: 0 auto;
+  display: block;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.7em;
+  transition: all 0.2s ease;
+}
+
+#boxw > input:hover {
+  background: #014965;
+}
+
+#boxw > .signup {
+  width: 100%;
+  height: auto;
+  border: none;
+  background: #f5f5f5;
+  outline: none;
+  margin: 0 auto;
+  padding: 20px;
+  display: block;
+  color: #666;
+  text-transform: uppercase;
+  text-align: center;
+  boxw-sizing: border-boxw;
+  font-size: 0.8em;
+}
+
+#boxw > .signup p, a {
+  font-size: 0.8em;
+  text-decoration: none;
+}
+
+#boxw > .signup p {
+  color: #ccc;
+}
+
+#boxw > .signup a {
+  text-decoration: none;
+  color: #015b7e;
+  font-size: 1em;
+  padding-left: 25px;
+}
+
+.box{
+        float:right;
+        display:none;
+        overflow: hidden;
+        background: #f0e68c;
+    }
+    /* Add padding and border to inner content
+    for better animation effect */
+    .box-inner{
+        width: 300px;
+        border: 1px solid #fff;
+    }
+.emp-box{
+        float:right;
+        display:none;
+        overflow: hidden;
+        background: #f0e68c;
+    }
+    /* Add padding and border to inner content
+    for better animation effect */
+    .emp-box-inner{
+        width: 300px;
+        border: 1px solid #a29415;
+    }
+
+.W-box{
+        float:right;
+        display:none;
+        overflow: hidden;
+        background: #f0e68c;
+    }
+    /* Add padding and border to inner content
+    for better animation effect */
+    .W-box-inner{
+        width: 300px;
+        border: 1px solid #a29415;
+    }
+</style>
+
+  
+</head>
+
+<body>
+<script type="text/x-template" id="login">
+ <div>         
+        <div style="color:darkgreen;">
+                <transition-group name="toast-list" tag="ul">
+                    <article  style="color:darkgreen;" class="message toast-list-item" v-for="toast, index of content" :key="toast.id" :class="type(toast.type)">
+                      <div class="message-body" style="color:darkgreen;">{{ toast.body}} </div>
+                    </article>
+                </transition-group>
+            </div>
+        <div class="row valign-wrapper" style="margin-top:10%;">
+            
+           <div class="col s3  offset-s4 card card1 valign-wrapper">  
+               <form class="login" @submit.prevent="login">
+                  
+                 <div class="row center-align" style="margin-top:2%;padding-top:6%;padding-left:1.5%;">
+                     
+                     <div  class="col s12 m12 grid-example center-align" style="border:1px solid #d0d0d0; height:50px;width:96%;padding-top:7px;padding-left:35px;">
+                            <input required ref="userName" v-model="username_input" type="text" placeholder="USER NAME" /></div>  
+                    <div class="col s12 grid-example center-align" style="border:1px solid #d0d0d0;margin-top:1%;height:50px;width:96%;padding-top:7px;padding-left:35px;">
+                            <input required v-model="password_input" type="password" placeholder="PASSWORD"/></div>  
+                     <div @click="LoginBoardOne()" class="col s3 card card1" style="height:50px;width:65px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text text-center" style="padding">1</span></div>
+                     <div @click="LoginBoardTwo()" class="col s3 grid-example card" style="height:50px;width:65px;margin-left:15px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text">2</span></div>
+                     <div @click="LoginBoardThree()" class="col s3 grid-example card" style="height:50px;width:65px;margin-left:15px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text">3</span></div>
+                     <div @click="LoginBoardFour()" class="col s3 grid-example card card1" style="height:50px;width:65px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text text-center" style="padding">4</span></div>
+                     <div @click="LoginBoardFive()" class="col s3 grid-example card" style="height:50px;width:65px;margin-left:15px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text">5</span></div>
+                     <div @click="LoginBoardSix()" class="col s3 grid-example card" style="height:50px;width:65px;margin-left:15px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text">6</span></div>
+                     <div @click="LoginBoardSeven()" class="col s3 grid-example card card1" style="height:50px;width:65px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text text-center" style="padding">7</span></div>
+                     <div @click="LoginBoardEight()" class="col s3 grid-example card" style="height:50px;width:65px;margin-left:15px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text">8</span></div>
+                     <div @click="LoginBoardNine()" class="col s3 grid-example card" style="height:50px;width:65px;margin-left:15px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text">9</span></div>
+                     <div @click="LoginBoardZero()" class="col s3 grid-example card card1" style="height:50px;width:65px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text text-center" style="padding">0</span></div>
+                     <div @click="LoginBoardClear()" class="col s3 grid-example card" style="height:50px;width:65px;margin-left:15px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text"><i class="material-icons">clear</i></span></div>
+                     <div @click="LoginBoardPassword()" class="col s3 grid-example card" style="height:50px;width:65px;margin-left:15px;padding-top:7px;padding-left:10px;">
+                            <span class="flow-text"><i class="material-icons">arrow_downward</i></span></div>                        
+                     <div class="col s12 grid-example center-align" style="background-color:#0c446c;color:#fff;height:50px;width:96%;padding-top:7px;padding-left:10px;">
+                            <button type="submit" style="background-color:#0c446c;color:#fff;border:0px;"><span class="flow-text text-center" style="padding">DONE</span></button></div>                   
+                </div>
+             </form>
+            </div>
+        </div>       
+	 </div>
+</script>
+  <script type="text/x-template" id="home">
+    <div class="animated fadeIn delay-2s">
+     		<div class="content">
+                            <div class="container">
+<div class="row cardbody" >
+    <div class="col-12 col-lg-12 col-md-12 text-center"><h5></h5></div>
+</div>                            
+                            </div>
+					<div class="container backcard" style="height:600px;">
+						<div class="row card-content">
+							<div class="col-12 col-lg-6 col-md-6 col-sm-6 animated zoomInUp delay-2s">
+                                                   <div id="piechart" style="width: 500px; height: 250px;"></div>
+			
+							</div>
+							<div class="col-12 col-lg-6 col-md-6 col-sm-6 backcard">
+                                      <div class="row" style="margin-top:1%;">
+                                                <div class="col-lg-3"></div><div class="col-lg-8">TOP PERFORMERS</div>
+                                        </div>        
+                                         <div class="row animated " style="margin-top:3%;">
+                                                <div class="col-lg-1">75%</div>
+                                                <div class="col-lg-9">
+                                                <div class="cssProgress">
+                                                        <div class="progress1">
+                                                                <div class="cssProgress-bar" data-percent="75" style="width: 75%;">
+                                                                    <span class="cssProgress-label"></span>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-lg-2" style="margin-top:-15px;"><img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %}" alt="Admin" width="50"></div>                       
+                                        </div>
+                                         <div class="row animated " style="margin-top:3%;">
+                                                <div class="col-lg-1">75%</div>
+                                                <div class="col-lg-9">
+                                                <div class="cssProgress">
+                                                        <div class="progress1">
+                                                                <div class="cssProgress-bar" data-percent="75" style="width: 75%;">
+                                                                    <span class="cssProgress-label"></span>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-lg-2" style="margin-top:-15px;"><img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %}" alt="Admin" width="50"></div>                       
+                                        </div>
+                                         <div class="row animated " style="margin-top:3%;">
+                                                <div class="col-lg-1">75%</div>
+                                                <div class="col-lg-9">
+                                                <div class="cssProgress">
+                                                        <div class="progress1">
+                                                                <div class="cssProgress-bar" data-percent="75" style="width: 75%;">
+                                                                    <span class="cssProgress-label"></span>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-lg-2" style="margin-top:-15px;"><img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %}" alt="Admin" width="50"></div>                       
+                                        </div>
+                                         <div class="row animated " style="margin-top:3%;">
+                                                <div class="col-lg-1">75%</div>
+                                                <div class="col-lg-9">
+                                                <div class="cssProgress">
+                                                        <div class="progress1">
+                                                                <div class="cssProgress-bar" data-percent="75" style="width: 75%;">
+                                                                    <span class="cssProgress-label"></span>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-lg-2" style="margin-top:-15px;"><img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %}" alt="Admin" width="50"></div>                       
+                                        </div>			
+							</div>
+							<div class="col-12 col-lg-6 col-md-6 col-sm-6 animated zoomInUp delay-2s">
+            						<div id="piechart2" style="width: 500px; height: 250px;"></div>
+			
+							</div>
+							<div class="col-12 col-lg-6 col-md-6 col-sm-6 backcard" style="margin-top:3%;">
+                                      <div class="row" style="margin-top:1%;">
+                                                <div class="col-lg-3"></div><div class="col-lg-8">LEAST PERFORMERS</div>
+                                        </div> 
+                                             <div class="row animated "  style="margin-top:3%;">
+                                                <div class="col-lg-1">75%</div>
+                                                <div class="col-lg-9">
+                                                <div class="cssProgress">
+                                                        <div class="progress1">
+                                                                <div class="cssProgress-bar" data-percent="75" style="width: 75%;">
+                                                                    <span class="cssProgress-label"></span>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-lg-2" style="margin-top:-15px;"><img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %}" alt="Admin" width="50"></div>                       
+                                        </div>
+                                         <div class="row animated " style="margin-top:3%;">
+                                                <div class="col-lg-1">75%</div>
+                                                <div class="col-lg-9">
+                                                <div class="cssProgress">
+                                                        <div class="progress1">
+                                                                <div class="cssProgress-bar" data-percent="75" style="width: 75%;">
+                                                                    <span class="cssProgress-label"></span>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-lg-2" style="margin-top:-15px;"><img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %}" alt="Admin" width="50"></div>                       
+                                        </div>
+                                         <div class="row animated " style="margin-top:3%;">
+                                                <div class="col-lg-1">75%</div>
+                                                <div class="col-lg-9">
+                                                <div class="cssProgress">
+                                                        <div class="progress1">
+                                                                <div class="cssProgress-bar" data-percent="75" style="width: 75%;">
+                                                                    <span class="cssProgress-label"></span>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-lg-2" style="margin-top:-15px;"><img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %}" alt="Admin" width="50"></div>                       
+                                        </div>
+                                         <div class="row animated " style="margin-top:3%;">
+                                                <div class="col-lg-1">75%</div>
+                                                <div class="col-lg-9">
+                                                <div class="cssProgress">
+                                                        <div class="progress1">
+                                                                <div class="cssProgress-bar" data-percent="75" style="width: 75%;">
+                                                                    <span class="cssProgress-label"></span>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-lg-2" style="margin-top:-15px;"><img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %}" alt="Admin" width="50"></div>                       
+                                        </div>  
+			
+							</div>
+							<div class="col-12 col-lg-6 col-md-6 col-sm-6">
+                			
+							</div>
+							<div class="col-12 col-lg-6 col-md-6 col-sm-6">
+			
+							</div>
+						</div>				
+						
+					</div>				
+				</div>
+
+    </div>
+</script>
+
+<script type="text/x-template" id="ConfigureData">
+    <div class="animated fadeIn delay-2s">
+				
+				<div id="content">
+							<div class="container topcard">
+							<div class="row">
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									CONFIGURE DATA
+								</div>
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									BROWSE DATA 
+								</div>
+							</div>
+							</div><div class="container backcard">
+								<div class="row">
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="ex4">
+													<div class="row">
+																<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+																<div >
+																	<button class="accordion">SEASON</button>
+																	<div class="panel"><br>
+																			<form>
+																				<input v-model="newSeason.name" type="text" placeholder="SEASON NAME" class="form-control"/><br>
+																				<input v-model="newSeason.code" type="text" placeholder="SEASON CODE" class="form-control"/><br>
+																				<input @click="addSeason" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+																			</form>
+																	</div>
+																</div>
+																<div>
+																	<button class="accordion">COLLECTION</button>
+																	<div class="panel"><br>
+																			 <form>
+																				<input v-model="newCollection.name" type="text" placeholder="COLLECTION NAME" class="form-control"/><br>
+																				<input v-model="newCollection.code" type="text" placeholder="COLLECTION CODE" class="form-control"/><br>
+																				<input @click="addCollection" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																			</form>
+																	</div>
+																</div>
+																<button class="accordion">PHASE</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newPhase.name" type="text" placeholder="PHASE NAME" class="form-control"/><br>
+																			<input v-model="newPhase.code"type="text" placeholder="PHASE CODE" class="form-control"/><br>
+																			<input @click="addPhase" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																</div>
+																<button class="accordion">DEPARTMENT</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newDepartment.name" type="text" placeholder="DEPARTMENT NAME" class="form-control"/><br>
+																			<input v-model="newDepartment.code" type="text" placeholder="DEPARTMENT CODE" class="form-control"/><br>
+																			<input v-model="addDepartment" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																</div>
+																<button class="accordion">BRAND</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newBrand.name" type="text" placeholder="BRAND NAME" class="form-control"/><br>
+																			<input v-model="newBrand.code" type="text" placeholder="BRAND CODE" class="form-control"/><br>
+																			<input @click="addBrand" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+																		</form>																		
+																</div>
+																<button class="accordion">CATEGORY</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newCategory.name" type="text" placeholder="CATEGORY NAME" class="form-control"/><br>
+																			<input v-model="newCategory.code" type="text" placeholder="CATEGORY CODE" class="form-control"/><br>
+																			<input @click="addCategory" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																 </div>
+																<button class="accordion">GENDER</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newGender.name" type="text" placeholder="GENDER NAME" class="form-control"/><br>
+																			<input v-model="newGender.code" type="text" placeholder="GENDER CODE" class="form-control"/><br>
+																			<input @click="addGender" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+																		</form>
+																		
+																</div>
+																<button class="accordion">PRODUCT GROUP</button>
+																<div class="panel"><br>
+																		<form>
+																			<input type="text" placeholder="PRODUCT GROUP NAME" class="form-control"/><br>
+																			<input type="text" placeholder="PRODUCT GROUP CODE" class="form-control"/><br>
+																			<input type="button" class="btn btn-block btn-primary" value="SAVE"/>
+																		</form>
+																		
+																</div>
+																<button class="accordion">COMBO</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newCombo.name" type="text" placeholder="COMBO NAME" class="form-control"/><br>
+																			<input v-model="newCombo.code" type="text" placeholder="COMBO CODE" class="form-control"/><br>
+																			<input @click="addCombo" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">COLOR</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newColor.name" type="text" placeholder="COLOR NAME" class="form-control"/><br>
+																			<input v-model="newColor.code" type="text" placeholder="COLOR CODE" class="form-control"/><br>
+																			<input @click="addColor" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">WEAVE</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newWeave.name" type="text" placeholder="WEAVE NAME" class="form-control"/><br>
+																			<input v-model="newWeave.code" type="text" placeholder="WEAVE CODE" class="form-control"/><br>
+																			<input @click="addWeave" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">MAJOR FABRIC</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newMajorFabric.name" type="text" placeholder="MAJOR FABRIC NAME" class="form-control"/><br>
+																			<input v-model="newMajorFabric.code" type="text" placeholder="MAJOR FABRIC CODE" class="form-control"/><br>
+																			<input @click=" addMajorFabric" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">FABRIC DETAILS</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newFabricDetail.name" type="text" placeholder="FABRIC DETIALS NAME" class="form-control"/><br>
+																			<input v-model="newFabricDetail.code" type="text" placeholder="FABRIC DETAILS  CODE" class="form-control"/><br>
+																			<input @click="addFabricDetail" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">FABRIC CARE</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newFabricCare.name" type="text" placeholder="FABRIC CARE NAME" class="form-control"/><br>
+																			<input v-model="newFabricCare.code" type="text" placeholder="FABRIC CARE CODE" class="form-control"/><br>
+																			<input  @click="addFabricCare" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+											
+
+
+						
+													</div> 
+<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+																<button class="accordion">NECK</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newNeck.name" type="text" placeholder="NECK NAME" class="form-control"/><br>
+																			<input v-model="newNeck.code" type="text" placeholder="NECK CODE" class="form-control"/><br>
+																			<input @click="addNeck" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">FIT</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newFit.name" type="text" placeholder="FIT NAME" class="form-control"/><br>
+																			<input v-model="newFit.code" type="text" placeholder="FIT CODE" class="form-control"/><br>
+																			<input  @click="newFit" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+	
+																<button class="accordion">SHAPE</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newShape.name" type="text" placeholder="SHAPE NAME" class="form-control"/><br>
+																			<input v-model="newShape.code" type="text" placeholder="SHAPE CODE" class="form-control"/><br>
+																			<input @click="addShape" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">HEMLINE</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newHemline.name" type="text" placeholder="HEMLINE NAME" class="form-control"/><br>
+																			<input v-model="newHemline.code" type="text" placeholder="HEMLINE CODE" class="form-control"/><br>
+																			<input @click="addHemline"type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">LENGTH</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newLength.name" type="text" placeholder="LENGTH NAME" class="form-control"/><br>
+																			<input v-model="newLength.code" type="text" placeholder="LENGTH CODE" class="form-control"/><br>
+																			<input @click="addLength" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">SLEEVE</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newSleeve.name" type="text" placeholder="SLEEVE NAME" class="form-control"/><br>
+																			<input v-model="newSleeve.code" type="text" placeholder="SLEEVE CODE" class="form-control"/><br>
+																			<input @click="addSleeve" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">OCCASION</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newOccasion.name" type="text" placeholder="OCCASION NAME" class="form-control"/><br>
+																			<input v-model="newOccasion.code" type="text" placeholder="OCCASION CODE" class="form-control"/><br>
+																			<input @click="addOccasion" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">BASE TYPE</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newBaseType.name" type="text" placeholder="BASE TYPE NAME" class="form-control"/><br>
+																			<input v-model="newBaseType.code"type="text" placeholder="BASE TYPE CODE" class="form-control"/><br>
+																			<input @click="addBaseType" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">SURFACE</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newSurface.name" type="text" placeholder="SURFACE NAME" class="form-control"/><br>
+																			<input v-model="newSurface.code" type="text" placeholder="SURFACE CODE" class="form-control"/><br>
+																			<input @click="addSurface" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">CLOSURE</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newClosure.name" type="text" placeholder="CLOSURE NAME" class="form-control"/><br>
+																			<input v-model="newClosure.code" type="text" placeholder="CLOSURE CODE" class="form-control"/><br>
+																			<input @click="addClosure" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">SHADE</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newShade.name" type="text" placeholder="SHADE NAME" class="form-control"/><br>
+																			<input v-model="newShade.code" type="text" placeholder="SHADE CODE" class="form-control"/><br>
+																			<input @click="addShade" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">STRETCH</button>
+																<div class="panel"><br>
+																		<form>
+																			<input  v-model="newStretch.name" type="text" placeholder="STRETCH NAME" class="form-control"/><br>
+																			<input v-model="newStretch.code" type="text" placeholder="STRETCH CODE" class="form-control"/><br>
+																			<input @click="addStretch" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+																<button class="accordion">RICE</button>
+																<div class="panel"><br>
+																		<form>
+																			<input v-model="newRice.name" type="text" placeholder="RICE NAME" class="form-control"/><br>
+																			<input v-model="newRice.code" type="text" placeholder="RICE CODE" class="form-control"/><br>
+																			<input @click="addRice" type="button" class="btn btn-block btn-primary" value="SAVE"/>
+
+																		</form>
+																		
+																</div>
+
+						
+													</div> 
+                           </div>
+
+
+											</div>
+												
+									</div> 
+
+										
+								</div>						
+							</div>              
+                                    
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="AddProduct">
+    <div class="animated fadeIn delay-2s">
+          <div id="content">
+			<div class="container topcard">
+				<div class="row">
+				<div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:20px;">
+					<input type="text" placeholder="search article" class="form-control" v-model="search_article">	
+				</div>
+				<div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:20px;">
+					<input type="text" placeholder="search barcode" class="form-control"  v-model="search_barcode">	
+				</div>
+				<div class="col-12 col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top:20px;">
+				</div>
+				<div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:20px;">
+         					<a href="http://localhost:8000/corporate/upload-products" target="_blank">UPLOAD FILE</a>	
+				</div>
+        		</div>
+		</div>
+           <div class="collapse" id="collapseExample">
+                <div class="container" style="margin-top:1%;border-radius:5px;">
+              <div class="card card-body">
+                    <p>{{editProduct.article_number}}</p>
+                    ${editProduct.article_number}
+                    <form>
+                <div class="row">
+                    <div  class="col-12 col-lg-3 col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Article" disabled/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Purchase"/>        
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Size"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Landed Cost"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="purchase"/>        
+                        </div>     
+                    </div>
+                    <div  class="col-12 col-lg-3 col-md-3 col-sm-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Barcode" disabled/>        
+                            </div> 
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="MRP Cost"/>        
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="GST"/>        
+                            </div> 
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Additional Cost"/>        
+                            </div> 
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Vendor"/>        
+                            </div>     
+                     </div>
+                    <div  class="col-12 col-lg-3 col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Phase"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Weave"/>        
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Major Fabric"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Fabric Care"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Fabrc Details"/>        
+                        </div>     
+                    </div>
+                    <div  class="col-12 col-lg-3 col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Neck"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Fit"/>        
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Shape"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Hemline"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Length"/>        
+                        </div>     
+                    </div>
+                    <div  class="col-12 col-lg-3 col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Sleeve"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Occasion"/>        
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Base Type"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Surface"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Closure"/>        
+                        </div>     
+                    </div>
+                    <div  class="col-12 col-lg-3 col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Shade">        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Stretch"/>        
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Rise"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Description"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Style Number"/>        
+                        </div>     
+                    </div>
+                    <div  class="col-12 col-lg-3 col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Group">        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Color"/>        
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Material Code"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="PO Number"/>        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Brand"/>        
+                        </div>     
+                    </div>
+                    <div  class="col-12 col-lg-3 col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Category">        
+                        </div> 
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Gender"/>        
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control" placeholder="Image"/>        
+                        </div>     
+                    </div>
+                </div>
+                </form>
+                    
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                DONE
+              </a>
+              </div></div>
+         </div>
+		<div class="container backcard">
+			<div class="row">
+				<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+                            <div class="ex4">
+                            <table class="table">
+                                        <thead style="background-color:#C51F50;color:#fff;">
+                                               <tr>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>SL NO</b></p></th>
+                                                <th scope="col" class="text-center"><p style="font-size:12px;color:#fff;"><b>IMAGE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>ARTICLE NO</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>BARCODE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>DESCRIPTION</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>MRP</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>SIZE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>CREATED</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>ACTION</b></p></th>                 
+                                             </tr>
+                                                                </thead>
+                                                                <tbody  v-if="loading===true">
+                                                                <div class="load-box">
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                </div>
+                                                                </tbody>
+                                                                <tbody v-else>
+                                                                    <tr v-for="product in filterItems">                                            
+                                                                               <td class="text-center" ><p style="font-size:12px;color:#000;">${product.id}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.article_number}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.barcode}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.description}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.mrp_cost}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.size}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.created_at}</p></td>
+                                                                                 <td  v-on:click="editProductDetail(product)" class="text-center" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><p style="font-size:12px;color:#000;"><span class="ti-pencil-alt fa-2x"></span></p></td>
+                                                                                 
+                                                                        </tr>        
+                                                                </tbody>
+                                                                
+                                                                
+                                                        </table>
+
+                                    </div>
+												
+									</div> 
+
+										
+								</div>						
+							</div>                                     
+        </div>
+    </div>
+</script>
+
+<script type="text/x-template" id="ProductData">
+    <div class="animated fadeIn delay-2s">
+         <div id="content">
+            <div class="conainer">
+                <div class="row">
+                    <div class="col-12 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+							<div class="container topcard">
+							<div class="row">
+								<div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:20px;">
+									<input type="text" class="form-control" placeholder="ARTICLE NUMBER" v-model="search_item"/> 	
+								</div>
+                                        	<div class="col-12 col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top:20px;">
+									<select name="select" id="select" class="form-control">
+                                                            <option v-for="store in stores">{{store.name}}</option> 
+                                                </select> 
+								</div>
+                                        	<div class="col-12 col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top:20px;">
+									<select name="select" id="select" class="form-control">
+                                                            <option v-for="store in stores">{{store.name}}</option> 
+                                                </select> 
+								</div>
+                                        	<div class="col-12 col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top:20px;">
+									<select name="select" id="select" class="form-control">
+                                                            <option v-for="store in stores">{{store.name}}</option> 
+                                                </select> 
+								</div>
+
+                                        	<div class="col-12 col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top:20px;">
+    								        <button class="btn btn-secondary btn-block"  style="background-color:#C51F50;color:#fff;font-size:0.8em;border:1px solid #C51F50" @click="cancelTransfer()">CANCEL</button>        
+
+								</div>
+							</div>
+							</div>
+							<div class="containe backcard">
+                                        <div class="container">
+								<div class="row">
+    										<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+                                                            <div class="ex4">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SL.NO</b></p></th>
+                                                                        <th scope="col" class="text-center"><p style="font-size:12px;"><b>IMAGE</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>ARTICLE NO</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>BARCODE</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>DESCRIPTION</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>MRP</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SIZE</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CREATED</b></p></th>                  
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr v-for="product in filteredList">                                            
+                                                                               <td class="text-center" v-on:click="selectTransfer(product)"><p style="font-size:12px;color:red">${product.id}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.article_number}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.barcode}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.description}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.mrp_cost}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.size}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.created_at}</p></td>
+                                                                                 
+                                                                        </tr>        
+                                                                </tbody>
+                                                                
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+										
+								</div>						
+							</div>
+                </div>
+                <div class="col-12 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div class="topcard">
+        					<div class="row">
+                                          
+                                        	<div class=" col-lg-1 col-md-1 col-sm-1 col-xs-1" style="margin-top:20px;">
+                                                
+								</div>
+                                        	<div class=" col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:20px;">
+                                                <select name="select" id="select" class="form-control" v-model="newTransfer.store">
+                                                            <option v-for="store in stores">${store.name}</option> 
+                                                </select>   
+								</div>                                    
+                                        	<div class="col-12 col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top:20px;">
+    								        <button class="btn btn-secondary btn-block"  style="background-color:#0c446c;color:#fff;font-size:0.8em;border:1px solid #0c446c" @click="sendTransfer()">TRANSER</button>        
+
+								</div>
+                                           <div class=" col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top:20px;">
+                                                    <p style="font-size:12px;color:green"></p>
+								</div>
+
+                                </div>
+					</div>
+                          <div class="backcard">
+                            <div class="container">
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+                                  <div class="ex4">
+                                        <table class="table">
+                                            <thead>
+                                              <tr>
+                                                  <th scope="col"  class="text-center"><p style="font-size:12px;"><b>BARCODE</b></p></th>
+                                                   <th scope="col"  class="text-center"><p style="font-size:12px;"><b>QUANTITY</b></p></th>
+                                               </tr>
+                                              </thead>
+                                              </tbody>
+                                                 <tr v-for="product in transfer_products">                                            
+                                                    <td class="text-center" v-on:dblclick="deleteTransferProduct(product)"><p style="font-size:15px;color:green;">${product.product.barcode}</p></td>
+                                                    <td class="text-center"><p style="font-size:15px;"><span v-on:click="decreaseQuanity(product)"><i class="fas fa-minus-square fa-2x text-success"></i></span>&nbsp;&nbsp;${product.quantity}&nbsp;&nbsp;<span v-on:click="increaseQuantity(product)" ><i class="text-success fas fa-plus-square fa-2x"></i></span></p></td>
+                                                 </tr>        
+                                              </tbody>                                          
+                                       </table>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>                                                     
+        </div>
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="Transfers">
+    <div class="animated fadeIn delay-2s">
+			  <div id="content">
+							<div class="topcard">
+							<div class="row">
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									<input type="text" placeholder="ARTICLE NUMBER" v-model="search_trans_item" class="form-control"/>
+								</div>
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									
+								</div>
+							</div>
+							</div>
+							<div class=" backcard">
+								<div class="row">
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="ex4">
+                                                       <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SL.NO</b></p></th>
+                                                                        <th scope="col" class="text-center"><p style="font-size:12px;"><b>IMAGE</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>ARTICLE NO</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>BARCODE</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>DESCRIPTION</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>MRP</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SIZE</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>STORE</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>QTY</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>TRANSFER DATE</b></p></th>
+                                                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>STATUS</b></p></th>                          
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr v-for="product in filteredList">                                            
+                                                                               <td class="text-center" v-on:click="selectTransfer(product)"><p style="font-size:12px;color:red">${product.id}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.product.article_number}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.product.barcode}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.product.description}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.product.mrp_cost}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.product.size}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.store.name}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:red">${product.trans_quantity}</p></td>
+                                                                                <td class="text-center"><p style="font-size:12px;color:red">${product.created_at}</p></td>
+                                                                                <td class="text-center"><p style="font-size:12px;color:red">${product.status}</p></td>
+                                                                                 
+                                                                        </tr>        
+                                                                </tbody>
+                                                                
+                                                        </table>
+                            
+                                                </div>
+												
+									</div> 
+
+										
+								</div>						
+							</div>                                     
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="SaleConfiguration">
+    <div class="animated fadeIn delay-2s">
+        <div id="content">
+							<div class="container topcard">
+							<div class="row" style="margin-top:20px;">
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:20px;">
+									<input type="text" placeholder="STORE NAME" class="form-control"/> 	
+								</div>
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:20px;">
+									<button class="btn btn-primary slide-toggle" >ADD NEW STORE</button>
+								</div>
+							</div>
+							</div>
+							<div class="container backcard">
+								<div class="row">
+										<div class="col-12 col-lg-8 col-md-8 col-sm-8 col-xs-8" style="margin-top:20px;">
+                                                        <div class="ex4">
+                                                        <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SL.NO</b></p></th>
+                                                                <th scope="col" class="text-center"><p style="font-size:12px;"><b>NAME</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CITY</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>STATE</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CONTACT PERSON</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CONTACT NUMBER</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CONTACT EMAIL</b></p></th>                 
+                                                            </tr>
+                                                        </thead>
+                                                            <tbody>
+                                                                <tr v-for="store in filterStores " style="margin-top:20px;">                                            
+                                                                           <td class="text-center"><p style="font-size:12px;">{{store.id}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;">{{store.name}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;">{{store.city}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;">{{store.state}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;">{{store.contact_person}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;">{{store.contact_number}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;">{{store.contact_email}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;">{{store.contact_email}}</p></td>                            
+                                                                    </tr>        
+                                                            </tbody>
+                                                    </table>
+
+                                                    </div>
+												
+									</div>
+                                                <div class="col-12 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="box">
+                                                        <div class="box-innder">
+                                                          <div class="wrapper-box">
+                                                              <div id="boxw">
+                                                        
+                                                                <form>
+                                                                  <input type="text" placeholder="STORE NAME" v-model="newStore.name" />
+                                                                  <input type="text" placeholder="PASSWORD"  v-model="newStore.city"/>
+                                                                  <input type="text" placeholder="USERNAME" v-model="newStore.state"/>
+                                                                  <input type="text" placeholder="PASSWORD" v-model="newStore.contact_name"/>
+                                                                  <input type="text" placeholder="USERNAME" v-model="newStore.contact_number"/>
+                                                                  <input type="text" placeholder="PASSWORD" v-model="newStore.contact_email"/>
+                                                                </form>
+                                                                 <input onclick="this.style.backgroundColor = '#69c061';" @click="addNewStore" type="submit" value="go on... click me!"/>
+                                                              </div>
+                                                            </div>       
+                                                        </div> 
+
+										
+            								</div>					
+							</div>                                     
+        </div></div>
+
+
+        <div id="content">
+							<div class="container topcard">
+							<div class="row">
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:20px;">
+									<input  type="text" class="form-control" placeholde="search employee"/>	
+								</div>
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:20px;">
+									<button class="btn btn-primary emp-slide-toggle" >ADD EMPLOYEE</button>									
+								</div>
+							</div>
+							</div>
+							<div class="container backcard" >
+								<div class="row">
+										<div class="col-12 col-lg-8 col-md-8 col-sm-8 col-xs-8" style="margin-top:20px;">
+                                                        <div class="ex4">
+                                                        <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SL.NO</b></p></th>
+                                                                <th scope="col" class="text-center"><p style="font-size:12px;"><b>IMAGE</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>NAME</b></p></th>
+                                                                <th scope="col" class="text-center"><p style="font-size:12px;"><b>GENDER</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>STAFF ID</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>STORE</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>NUMBER</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CITY</b></p></th>
+                                        
+                                                            </tr>
+                                                        </thead>
+                                                            <tbody>
+                                                                <tr v-for="emp in filterdEmployees">                                            
+                                                                           <td class="text-center"><p style="font-size:12px;">{{emp.id}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;"></p></td>
+
+                                                                             <td class="text-center"><p style="font-size:12px;">{{emp.gender}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;">{{emp.name}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;">{{emp.staff_id}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;">{{emp.store}}</p></td>
+                                                                             <td class="text-center"><p style="font-size:12px;">{{emp.number}}</p></td>
+                                                                            <td class="text-center"><p style="font-size:12px;">{{emp.city}}</p></td>                       
+                                                                    </tr>        
+                                                            </tbody>
+                                                    </table>
+                                                </div>
+								</div> 
+                                            <div class="col-12 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="emp-box">
+                                                        <div class="emp-box-innder">
+                                                          <div class="wrapper-box">
+                                                              <div id="boxw">
+                                                        
+                                                                <form>
+                                                                  <input type="text" placeholder="NAME"  v-model="newEmp.name"/>
+                                                                  <input type="text" placeholder="STAFF ID" v-model="newEmp.staff_id" />
+                                                                  <input type="text" placeholder="STAFF ID" v-model="newEmp.gender" />
+                                                                  <input type="text" placeholder="STORE" v-model="newEmp.store" />
+                                                                  <input type="text" placeholder="PHONE"  v-model="newEmp.contact_number"/>
+                                                                  <input type="text" placeholder="CITY"  v-model="newEmp.city"/>
+                                                                  <input type="text" placeholder="STATE" v-model="newEmp.state"/>
+                                                                </form>
+                                                                 <input onclick="this.style.backgroundColor = '#69c061';" @click="addNewEmployee()" type="submit" value="go on... click me!"/>
+                                                              </div>
+                                                            </div>       
+                                                        </div> 										
+            								</div>	                                            
+                                            </div>
+										
+								</div>						
+							</div>                                     
+        </div></div>
+        
+
+
+        
+        <div id="content">
+							<div class="container topcard">
+							<div class="row">
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:20px;">
+									<input  type="text" class="form-control" placeholde="Warehouse"/>	
+								</div>
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:20px;">
+									<button class="btn btn-danger W-slide-toggle" >ADD WARE HOUSER</button>									
+								</div>
+							</div>
+							</div>
+							<div class="container backcard">
+								<div class="row">
+										<div class="col-12 col-lg-8 col-md-8 col-sm-8 col-xs-8" style="margin-top:20px;">
+                                                        <div class="ex4">
+                                                        <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SL.NO</b></p></th>
+                                                                <th scope="col" class="text-center"><p style="font-size:12px;"><b>NAME</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>ID</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CITY</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>STATE</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CONTACT NUMBER</b></p></th>
+                                                                <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CONACT NAME</b></p></th>                 
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr v-for="ware in filteredWarehouses">                                            
+                                                                   <td class="text-center"><p style="font-size:12px;">{{ware.id}}</p></td>
+                                                                     <td class="text-center"><p style="font-size:12px;">{{ware.name}}</p></td>
+                                                                     <td class="text-center"><p style="font-size:12px;">{{ware.ware_id}}</p></td>
+                                                                     <td class="text-center"><p style="font-size:12px;">{{ware.city}}</p></td>
+                                                                     <td class="text-center"><p style="font-size:12px;">{{ware.state}}</p></td>
+                                                                     <td class="text-center"><p style="font-size:12px;">{{ware.contact_number}}</p></td>
+                                                                     <td class="text-center"><p style="font-size:12px;">{{ware.contact_name}}</p></td>                                                      
+                                                            </tr>        
+                                                        </tbody>
+                                                        </table>
+                                                </div>
+												
+									</div> 
+                                                <div class="col-12 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="W-box">
+                                                        <div class="W-box-innder">
+                                                          <div class="wrapper-box">
+                                                              <div id="boxw">
+                                                        
+                                                                <form>
+                                                                  <input type="text" placeholder="NAME"  v-model="newWareHouse.name"/>
+                                                                  <input type="text" placeholder="ID" v-model="newWareHouse.id" />
+                                                                  <input type="text" placeholder="CITY" v-model="newWareHouse.city" />
+                                                                  <input type="text" placeholder="STATE" v-model="newWareHouse.state" />
+                                                                  <input type="text" placeholder="CONTACT NAME"  v-model="newWareHouse.contact_name"/>
+                                                                  <input type="text" placeholder="CONTACT NUMBER"  v-model="newWareHouse.contact_number"/>
+                                                                </form>
+                                                                 <input onclick="this.style.backgroundColor = '#69c061';" @click="addNewWareHouse()" type="submit" value="go on... click me!"/>
+                                                              </div>
+                                                            </div>       
+                                                        </div> 										
+            								</div>
+                                                
+                                                </div>
+
+										
+								</div>						
+							</div>                                     
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="SalesReport">
+    <div class="animated fadeIn delay-2s">
+        <div id="content">
+			<div class="container topcard">
+				<div class="row">
+				<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:20px;">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item" style="margin-left:1%;">
+                                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" style="font-size:0.8em;">SALES TABLES</a>
+                                    </li>
+                                    <li class="nav-item" style="margin-left:8%;">
+                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" style="font-size:0.8em;">SALES FRAPHS</a>
+                                    </li>
+                            </ul>   						
+				</div>
+				<div class="col-12 col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top:20px;">
+				</div>
+				<div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:20px;">
+         					<h6 data-toggle="collapse" href="#collapseFilters" role="button" aria-expanded="false" aria-controls="collapseFilters"> FILTERS</h6>	
+				</div>
+        		</div>
+
+	  </div>
+        <div id="content">
+            <div class="container">
+                <div class="collapse" id="collapseFilters">
+                    <div class="container" style="margin-top:1%;border-radius:5px;">
+                           <div class="card card-body">
+                                         <div class="row">   
+                                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    												<div class="form-group" style="float:left;width:15%;">
+												    <label for="selctarticle" style="font-size:0.6em;">SEARCH BY ARTICLE</label>
+												    <input type="text" class="form-control" v-model="search_article_number">
+												</div>
+												<div class="form-group" style="float:left;width:9%;margin-left:1%;">
+												    <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+												    <select name="select" id="select" class="form-control" style="font-size:0.8em;background-color:#e2eaea;">
+												            <option value="0">INDIA</option>
+												            <option value="1">Option #1</option>
+												            <option value="2">Option #2</option>
+												            <option value="3">Option #3</option>
+												    </select>
+												</div>
+												<div class="form-group" style="float:left;width:10%;margin-left:1%;">
+												    <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+												    <select name="select" id="select" class="form-control" style="font-size:0.8em;background-color:#e2eaea;">
+												            <option value="0">KERALA</option>
+												            <option value="1">Option #1</option>
+												            <option value="2">Option #2</option>
+												            <option value="3">Option #3</option>
+												    </select>
+												</div>
+												<div class="form-group" style="float:left;width:15%;margin-left:1%;">
+												    <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+												    <select  v-model="search_store" name="select" id="select" class="form-control" style="font-size:0.8em;background-color:#e2eaea;">
+												            <option v-for="store in stores">${store.name}</option>
+												    </select>
+												</div>
+												<div class="form-group" style="float:left;width:15%;margin-left:3%;">
+												    <label for="selctarticle" style="font-size:0.6em;">DATE RANGE</label>
+												    <input v-model="search_date" type="date" class="form-control" style="background-color:#e2eaea;"/>
+												</div>
+												<div class="form-group" style="float:left;width:14%;margin-left:1%;">
+												    <label for="selctarticle" style="font-size:0.6em;">GROUP</label>
+												    <select name="select" id="select" class="form-control" style="font-size:0.7em;background-color:#e2eaea;">
+												            <option value="0">BY PRODUCT</option>
+												            <option value="1">Option #1</option>
+												            <option value="2">Option #2</option>
+												            <option value="3">Option #3</option>
+												    </select>
+												</div>
+												<div class="form-group" style="float:left;width:8%;margin-left:1%;">
+												    <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+												    <button class="btn btn-primary btn-block" data-toggle="collapse" href="#collapseFilters" role="button" aria-expanded="false" aria-controls="collapseFilters">DONE</button>
+												</div> 
+                                                        </div>
+                                                        								    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group" style="float:left;width:14.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">ACION</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">TRANSFER CART</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group" style="float:left;width:12.5%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">SORT BY</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">HIGH TO LOW</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group" style="float:left;width:6%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+                                                        <p id="select" class="form-control" style="font-size:0.7em;border:0px;">
+                                                                Filters
+                                                        </p>
+                                                    </div>
+                                                    <div class="form-group" style="float:left;width:10%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">GROUP</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">BABY</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>  <div class="form-group" style="float:left;width:10%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">GENDER</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">GIRL</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>  <div class="form-group" style="float:left;width:11%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">BRAND</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">NUBERRY</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>  <div class="form-group" style="float:left;width:10%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">P GROUP</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">T SHIRT</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>  <div class="form-group" style="float:left;width:8%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">SIZE</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">ALL</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group" style="float:left;width:8%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">SHELVE LIFE</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">90 DAYS</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group" style="float:left;width:2%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+                                                        <p id="select" class="form-control" style="font-size:0.7em;border:0px;">
+                                                               <i class="fa fa-caret-up fa-2x"></i>
+                                                        </p>
+                                                    </div>             
+                                            </div>
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group" style="float:left;width:11%;">
+                <label for="selctarticle" style="font-size:0.6em;">PROMOTION</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">DISCOUNT</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>
+            <div class="form-group" style="float:left;width:12%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">PROMO TYPE</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">BUY1 GET1</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>
+            <div class="form-group" style="float:left;width:9%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">TIME</label>
+                <select  name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option >9-10PM</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>  <div class="form-group" style="float:left;width:10%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">OSSAION</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">CASUAL</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>  <div class="form-group" style="float:left;width:8%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">NECK</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">POLO</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>  <div class="form-group" style="float:left;width:10%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">WEAVE</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">KNITED</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>  <div class="form-group" style="float:left;width:9%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">COLOR</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">RED</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>  
+            <div class="form-group" style="float:left;width:9%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">PRICE</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">100-500</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div> 
+            <div class="form-group" style="float:left;width:12%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">SOLD BY</label>
+                <select v-model="search_employee" name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option v-for="emp in employees">${emp.name}</option>
+                </select>
+            </div>  
+           <div class="form-group" style="float:left;width:2%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+                <p id="select" class="form-control" style="font-size:0.7em;border:0px;">
+                       <i class="fa fa-caret-down fa-2x"></i>
+                </p>
+            </div>  
+             
+    </div>                                       
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+		<div class="container backcard">
+			<div class="row">
+				<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+                            <div class="ex4">                                
+                                 <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                   <table class="table">
+                                        <thead style="background-color:#C51F50;color:#fff;">
+                                               <tr>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>SL NO</b></p></th>
+                                                <th scope="col" class="text-center"><p style="font-size:12px;color:#fff;"><b>INVOICE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>ARTICLE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>BARCODE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>STORE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>BILL DATE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>SOLD BY</b></p></th>
+              
+                                             </tr>
+                                                                </thead>
+                                                                <tbody  v-if="loading===true">
+                                                                <div class="load-box">
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                </div>
+                                                                </tbody>
+                                                                <tbody v-else>
+                                                                    <tr v-for="item in filterItems">                                            
+                                                                               <td class="text-center" ><p style="font-size:12px;color:#000;">${item.id}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${item.sale_invoice.invoice_number}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${item.item.article_number}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${item.item.barcode}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${item.store}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${item.bill_date}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${item.sold_by}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;"></p></td>
+                                                                                 
+                                                                        </tr>        
+                                                                </tbody> 
+                                                        </table>
+                                     </div>
+                                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                        <div class="row">
+                                        <div class="col-12 col-lg-6 col-md-6">
+                                            <div id="piechart3" style="width: 500px; height: 250px;"></div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6">
+                                            <div id="piechart4" style="width: 500px; height: 250px;"></div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6">
+                                            <div id="piechart5" style="width: 500px; height: 250px;"></div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6">
+                                            <div id="piechart6" style="width: 500px; height: 250px;"></div>
+                                        </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                             </div>												
+				</div> 		
+                </div>						
+            </div>                          
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="MovementReport">
+    <div class="animated fadeIn delay-2s">
+        <div id="content">
+			<div class="container topcard">
+				<div class="row">
+				<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-top:20px;">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item" style="margin-left:1%;">
+                                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" style="font-size:0.8em;">SALES TABLES</a>
+                                    </li>
+                                    <li class="nav-item" style="margin-left:8%;">
+                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" style="font-size:0.8em;">SALES FRAPHS</a>
+                                    </li>
+                            </ul>   						
+				</div>
+				<div class="col-12 col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top:20px;">
+				</div>
+				<div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:20px;">
+         					<h6 data-toggle="collapse" href="#collapseFilters" role="button" aria-expanded="false" aria-controls="collapseFilters"> FILTERS</h6>	
+				</div>
+        		</div>
+
+	  </div>
+        <div id="content">
+            <div class="container">
+                <div class="collapse" id="collapseFilters">
+                    <div class="container" style="margin-top:1%;border-radius:5px;">
+                           <div class="card card-body">
+                                         <div class="row">   
+                                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    												<div class="form-group" style="float:left;width:15%;">
+												    <label for="selctarticle" style="font-size:0.6em;">SEARCH BY ARTICLE</label>
+												    <input type="text" class="form-control">
+												</div>
+												<div class="form-group" style="float:left;width:9%;margin-left:1%;">
+												    <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+												    <select name="select" id="select" class="form-control" style="font-size:0.8em;background-color:#e2eaea;">
+												            <option value="0">INDIA</option>
+												            <option value="1">Option #1</option>
+												            <option value="2">Option #2</option>
+												            <option value="3">Option #3</option>
+												    </select>
+												</div>
+												<div class="form-group" style="float:left;width:10%;margin-left:1%;">
+												    <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+												    <select name="select" id="select" class="form-control" style="font-size:0.8em;background-color:#e2eaea;">
+												            <option value="0">KERALA</option>
+												            <option value="1">Option #1</option>
+												            <option value="2">Option #2</option>
+												            <option value="3">Option #3</option>
+												    </select>
+												</div>
+												<div class="form-group" style="float:left;width:15%;margin-left:1%;">
+												    <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+												    <select  name="select" id="select" class="form-control" style="font-size:0.8em;background-color:#e2eaea;">
+												            <option >${store.name}</option>
+												    </select>
+												</div>
+												<div class="form-group" style="float:left;width:15%;margin-left:3%;">
+												    <label for="selctarticle" style="font-size:0.6em;">DATE RANGE</label>
+												    <input  type="date" class="form-control" style="background-color:#e2eaea;"/>
+												</div>
+												<div class="form-group" style="float:left;width:14%;margin-left:1%;">
+												    <label for="selctarticle" style="font-size:0.6em;">GROUP</label>
+												    <select name="select" id="select" class="form-control" style="font-size:0.7em;background-color:#e2eaea;">
+												            <option value="0">BY PRODUCT</option>
+												            <option value="1">Option #1</option>
+												            <option value="2">Option #2</option>
+												            <option value="3">Option #3</option>
+												    </select>
+												</div>
+												<div class="form-group" style="float:left;width:8%;margin-left:1%;">
+												    <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+												    <button class="btn btn-primary btn-block" data-toggle="collapse" href="#collapseFilters" role="button" aria-expanded="false" aria-controls="collapseFilters">DONE</button>
+												</div> 
+                                                        </div>
+                                                        								    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group" style="float:left;width:14.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">ACION</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">TRANSFER CART</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group" style="float:left;width:12.5%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">SORT BY</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">HIGH TO LOW</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group" style="float:left;width:6%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+                                                        <p id="select" class="form-control" style="font-size:0.7em;border:0px;">
+                                                                Filters
+                                                        </p>
+                                                    </div>
+                                                    <div class="form-group" style="float:left;width:10%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">GROUP</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">BABY</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>  <div class="form-group" style="float:left;width:10%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">GENDER</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">GIRL</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>  <div class="form-group" style="float:left;width:11%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">BRAND</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">NUBERRY</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>  <div class="form-group" style="float:left;width:10%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">P GROUP</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">T SHIRT</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>  <div class="form-group" style="float:left;width:8%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">SIZE</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">ALL</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group" style="float:left;width:8%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">SHELVE LIFE</label>
+                                                        <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                                                                <option value="0">90 DAYS</option>
+                                                                <option value="1">Option #1</option>
+                                                                <option value="2">Option #2</option>
+                                                                <option value="3">Option #3</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group" style="float:left;width:2%;margin-left:0.5%;">
+                                                        <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+                                                        <p id="select" class="form-control" style="font-size:0.7em;border:0px;">
+                                                               <i class="fa fa-caret-up fa-2x"></i>
+                                                        </p>
+                                                    </div>             
+                                            </div>
+<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group" style="float:left;width:11%;">
+                <label for="selctarticle" style="font-size:0.6em;">PROMOTION</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">DISCOUNT</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>
+            <div class="form-group" style="float:left;width:12%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">PROMO TYPE</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">BUY1 GET1</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>
+            <div class="form-group" style="float:left;width:9%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">TIME</label>
+                <select  name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option >9-10PM</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>  <div class="form-group" style="float:left;width:10%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">OSSAION</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">CASUAL</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>  <div class="form-group" style="float:left;width:8%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">NECK</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">POLO</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>  <div class="form-group" style="float:left;width:10%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">WEAVE</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">KNITED</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>  <div class="form-group" style="float:left;width:9%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">COLOR</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">RED</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div>  
+            <div class="form-group" style="float:left;width:9%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">PRICE</label>
+                <select name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option value="0">100-500</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                </select>
+            </div> 
+            <div class="form-group" style="float:left;width:12%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">SOLD BY</label>
+                <select v-model="search_employee" name="select" id="select" class="form-control" style="font-size:0.7em;">
+                        <option v-for="emp in employees">${emp.name}</option>
+                </select>
+            </div>  
+           <div class="form-group" style="float:left;width:2%;margin-left:0.5%;">
+                <label for="selctarticle" style="font-size:0.6em;">&nbsp;</label>
+                <p id="select" class="form-control" style="font-size:0.7em;border:0px;">
+                       <i class="fa fa-caret-down fa-2x"></i>
+                </p>
+            </div>  
+             
+    </div>                                       
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+		<div class="container backcard">
+			<div class="row">
+				<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+                            <div class="ex4">                                
+                                 <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                   <table class="table">
+                                        <thead style="background-color:#C51F50;color:#fff;">
+                                               <tr>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>SL NO</b></p></th>
+                                                <th scope="col" class="text-center"><p style="font-size:12px;color:#fff;"><b>IMAGE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>ARTICLE NO</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>BARCODE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>DESCRIPTION</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>MRP</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>SIZE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>CREATED</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>ACTION</b></p></th>                 
+                                             </tr>
+                                                                </thead>
+                                                                <tbody  v-if="loading===true">
+                                                                <div class="load-box">
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                </div>
+                                                                </tbody>
+                                                                <tbody v-else>
+                                                                    <tr>                                            
+                                                                               <td class="text-center" ><p style="font-size:12px;color:#000;">${product.id}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.article_number}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.barcode}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.description}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.mrp_cost}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.size}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${product.created_at}</p></td>
+                                                                                 <td  v-on:click="editProductDetail(product)" class="text-center" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><p style="font-size:12px;color:#000;"><span class="ti-pencil-alt fa-2x"></span></p></td>
+                                                                                 
+                                                                        </tr>        
+                                                                </tbody> 
+                                                        </table>
+                                     </div>
+                                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                        <div class="row">
+                                        <div class="col-12 col-lg-6 col-md-6">
+                                            <div id="piechart3" style="width: 500px; height: 250px;"></div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6">
+                                            <div id="piechart4" style="width: 500px; height: 250px;"></div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6">
+                                            <div id="piechart5" style="width: 500px; height: 250px;"></div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-md-6">
+                                            <div id="piechart6" style="width: 500px; height: 250px;"></div>
+                                        </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                             </div>												
+				</div> 		
+                </div>						
+            </div>                          
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="Discount">
+    <div class="animated fadeIn delay-2s">
+        <h2>Component 2</h2>
+        <ul>
+            <li>
+                <router-link to="/">Home</router-link>
+            </li>
+        </ul>
+    </div>
+</script>
+<script type="text/x-template" id="CustomerData">
+    <div class="animated fadeIn delay-2s">
+          <div id="content">
+			<div class="container topcard">
+				<div class="row">
+				<div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:20px;">
+					<input type="text" placeholder="search Number" class="form-control"	/>
+				</div>
+				<div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:20px;">
+					<input type="text" placeholder="search Name" class="form-control"/>	
+				</div>
+				<div class="col-12 col-lg-2 col-md-2 col-sm-2 col-xs-2" style="margin-top:20px;">
+				</div>
+				<div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:20px;">
+				</div>
+        		</div>
+		</div>
+           <div class="collapse" id="collapseExample">
+                <div class="container" style="margin-top:1%;border-radius:5px;">
+              <div class="card card-body">
+              </div></div>
+         </div>
+		<div class="container backcard">
+			<div class="row">
+				<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+                            <div class="ex4">
+                            <table class="table">
+                                        <thead style="background-color:#C51F50;color:#fff;">
+                                               <tr>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>SL NO</b></p></th>
+                                                <th scope="col" class="text-center"><p style="font-size:12px;color:#fff;"><b>NAME</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>MOBILE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>DOB</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>GENDER</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>EMAIL</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>CUSTOMER TYPE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>TOTAL PURCHASE</b></p></th>
+                                                <th scope="col"  class="text-center"><p style="font-size:12px;color:#fff;"><b>TOTAL POINTS</b></p></th>                 
+                                             </tr>
+                                                                </thead>
+                                                                <tbody  v-if="loading===true">
+                                                                <div class="load-box">
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                  <div class="cube"></div>
+                                                                </div>
+                                                                </tbody>
+                                                                <tbody v-else>
+                                                                    <tr v-for="customer in filterCustomer">                                            
+                                                                               <td class="text-center" ><p style="font-size:12px;color:#000;">${customer.id}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color#000">${customer.name}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${customer.mobile_number}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${customer.date_of_birth}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${customer.gender}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${customer.email}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${customer.customer_type}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${customer.total_amount_purchase}</p></td>
+                                                                                 <td class="text-center"><p style="font-size:12px;color:#000;">${customer.total_points}</p></td>
+                                                                                 
+                                                                        </tr>        
+                                                                </tbody>
+                                                                
+                                                                
+                                                        </table>
+
+                                    </div>
+												
+									</div> 
+
+										
+								</div>						
+							</div>                                     
+        </div>
+    </div>  
+</script>
+<script type="text/x-template" id="Loyalty">
+    <div class="animated fadeIn delay-2s">
+        <div id="content">
+							<div class="container topcard">
+							<div class="row">
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									PRODUCTS 	
+								</div>
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									BROWSE PRODUCT
+								</div>
+							</div>
+							</div>
+							<div class="container backcard">
+								<div class="row">
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="ex4">
+<table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SL.NO</b><p></th>
+                                        <th scope="col" class="text-center"><p style="font-size:12px;"><b>IMAGE</b><p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>TYPE</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>GROUP</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>STYLE NO</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>ARTICLE NO</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>BARCODE</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>DESCRIPTION</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>MRP</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SIZE</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>QUANTITY</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CREATED</b></p></th>                  
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                        <tr>                                            
+                                                   <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                            </tr>        
+                                    </tbody>
+                            </table>
+
+
+</div>
+												
+									</div> 
+
+										
+								</div>						
+							</div>                                     
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="Staff">
+    <div class="animated fadeIn delay-2s">
+        <div id="content">
+							<div class="container topcard">
+							<div class="row">
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									PRODUCTS 	
+								</div>
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									BROWSE PRODUCT
+								</div>
+							</div>
+							</div>
+							<div class="container backcard">
+								<div class="row">
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="ex4">
+<table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SL.NO</b><p></th>
+                                        <th scope="col" class="text-center"><p style="font-size:12px;"><b>IMAGE</b><p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>TYPE</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>GROUP</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>STYLE NO</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>ARTICLE NO</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>BARCODE</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>DESCRIPTION</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>MRP</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SIZE</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>QUANTITY</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CREATED</b></p></th>                  
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                        <tr>                                            
+                                                   <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                            </tr>        
+                                    </tbody>
+                            </table>
+
+
+</div>
+												
+									</div> 
+
+										
+								</div>						
+							</div>                                     
+        </div>
+    </div>
+</script>
+<script type="text/x-template" id="Attendence">
+    <div class="animated fadeIn delay-2s">
+        <div id="content">
+							<div class="container topcard">
+							<div class="row">
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									PRODUCTS 	
+								</div>
+								<div class="col-12 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+									BROWSE PRODUCT
+								</div>
+							</div>
+							</div>
+							<div class="container backcard">
+								<div class="row">
+										<div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="ex4">
+<table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SL.NO</b><p></th>
+                                        <th scope="col" class="text-center"><p style="font-size:12px;"><b>IMAGE</b><p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>TYPE</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>GROUP</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>STYLE NO</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>ARTICLE NO</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>BARCODE</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>DESCRIPTION</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>MRP</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>SIZE</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>QUANTITY</b></p></th>
+                                        <th scope="col"  class="text-center"><p style="font-size:12px;"><b>CREATED</b></p></th>                  
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                        <tr>                                            
+                                                   <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                                     <td class="text-center"><p style="font-size:12px;"></p></td>
+                                            </tr>        
+                                    </tbody>
+                            </table>
+
+
+</div>
+												
+									</div> 
+
+										
+								</div>						
+							</div>                                     
+        </div>
+    </div>
+</script>
+<div id="app">
+		 <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar" style="height:100vh;">
+            <div class="sidebar-header">
+            <h5>&nbsp;</h5>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">PRODUCT</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <router-link to="/configure">CONFIGURE DATA</router-link>
+												<router-link to="/add-product">ADD PRODUCT</router-link>
+												<router-link to="/product-data">PRODUCTS DATA</router-link>
+												<router-link to="/transfers">TRANSFERS</router-link>
+                    </ul>
+                </li>
+									<li>
+                    <a href="#salesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">SALES</a>
+                    <ul class="collapse list-unstyled" id="salesSubmenu">
+                        <router-link to="/sale-configurations">CONFIGURATIONS</router-link>
+												<router-link to="/sale-report">SALES REPORT</router-link>
+												<router-link to="/movement">MOVEMENT REPORT</router-link>
+												<router-link to="/best-worst">BEST & WORST</router-link>
+                    </ul>
+                </li>
+							  <li>
+                    <a href="#marketingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">MARKETING</a>
+                    <ul class="collapse list-unstyled" id="marketingSubmenu">
+                        <router-link to="/market-configurations">CONFIGURATIONS</router-link>
+												<router-link to="/discount">DISCOUNTS</router-link>
+												<router-link to="/customers">CUSTOMER DATA</router-link>
+												<router-link to="/loyalty">LOYALTY</router-link>
+                    </ul>
+                </li>
+							  <li>
+                    <a href="#hrSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">HR</a>
+                    <ul class="collapse list-unstyled" id="hrSubmenu">
+                        <router-link to="/staff">STAFF</router-link>
+												<router-link to="/attendence">ATTENDENCE</router-link>
+                    </ul>
+                </li>
+								 <li>
+                    <a href="#aboutSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">ABOUT NUBERRY</a>
+                    <ul class="collapse list-unstyled" id="aboutSubmenu">
+                        <router-link to="/1">ABOUT BRAND</router-link>
+												<router-link to="/2">BRAND FILES</router-link>
+												<router-link to="/1">SOP & GUIDES</router-link>
+												<router-link to="/2">STORE ASSETS</router-link>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- Page Content Holder -->
+
+				       <div id="content" style="padding:0px;">
+
+            <nav class="navbar navbar-expand-lg" style="background-color:#0c446c;color:#fff;">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+										<a class="navbar-brand" href="">NUBERRY</a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item" style="padding-right:20px;"><span class="ti-menu fa-2x" data-toggle="collapse" data-target="#demo"></span>
+    					   <li class="nav-item" style="padding-right:20px;">
+						 <i class="fas fa-desktop fa-2x" onclick="openFullscreen();"></i>
+                             </li>					              
+             
+                        </ul>
+                    </div>
+            </nav> 
+            
+                        <div id="demo" class="collapse">
+                <div class="container" style="padding:0px;padding-left:50px;background-color:#fff;border-radis:15px;box-shadow: 0px 15px 20px 15px rgba(0, 0, 0, 0), 0 5px 2px rgba(0, 0, 0, 0.06);margin-top:0px;">
+                    <div class="row">
+                        <router-link to="/add-product"><div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body" style="border-radius:50px;width:30%;">
+                            <span class="ti-settings fa-2x text-center"></span><br>
+                            <span style="font-size:10px;" class="text-center">DATA</span>
+                        </div></router-link>
+                        <router-link to="/product-data"><div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body" style="border-radius:50px;width:30%;">
+                            <span class="ti-view-grid fa-2x" style="padding-left:15px;"></span><br>
+                              <span style="font-size:10px;">PRODUCTS</span>
+                        </div></router-link> 
+                        <router-link to="/transfers"><div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body text-center" style="border-radius:50px;width:30%;">
+                            <span class="ti-truck fa-2x " style="padding-left:15px;" ></span><br>
+                              <span style="font-size:10px;">TRANSFERS</span>
+                        </div></router-link> 
+                        <router-link to="/sale-configurations"><div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body" style="border-radius:50px;width:30%;">
+                            <span class="ti-home fa-2x" style="padding-left:15px;"></span><br>
+                              <span style="font-size:10px;">STORES</span>
+                        </div></router-link> 
+                        <router-link to="/sale-report"><div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body" style="border-radius:50px;width:30%;">
+                            <span class="ti-receipt fa-2x"></span><br>
+                              <span style="font-size:10px;">SALES</span>
+                        </div></router-link> 
+                        <router-link to="/movement"><div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body" style="border-radius:50px;width:30%;">
+                            <span class="ti-book fa-2x" style="padding-left:15px;"></span><br>
+                              <span style="font-size:10px;">MOVEMENT</span>
+                        </div></router-link> 
+                        <router-link to="/discount"><div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body" style="border-radius:50px;width:30%;">
+                            <span class="ti-gift fa-2x" style="padding-left:15px;"></span><br>
+                              <span style="font-size:10px;">DISCOUNTS</span>
+                        </div></router-link> 
+                        <router-link to="/customers"><div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body" style="border-radius:50px;width:30%;">
+                            <span class="ti-face-smile fa-2x" style="padding-left:15px;"></span><br>
+                              <span style="font-size:10px;">CUSTOMERS</span>
+                        </div></router-link> 
+                        <router-link to="/loyalty"><div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body" style="border-radius:50px;width:30%;">
+                            <span class="ti-stamp fa-2x"></span><br>
+                              <span style="font-size:10px;">LOYALITY</span>
+                        </div></router-link> 
+
+                        <div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body" style="border-radius:50px;width:30%;">
+                            <span class="ti-id-badge fa-2x"></span><br>
+                              <span style="font-size:10px;padding-bottom:15px;">ASSETS</span>
+                        </div></router-link> 
+                        <div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body" style="border-radius:50px;width:30%;">
+                            <span class="ti-agenda fa-2x"></span><br>
+                              <span style="font-size:10px;">SOP</span>
+                        </div></router-link> 
+                        <div class="col-12 col-lg-1 col-md-1 col-sm-1 card-body" style="border-radius:50px;width:30%;">
+                            <span class="ti-harddrives fa-2x"></span><br>
+                              <span style="font-size:10px;">BRNAD</span>
+                        </div></router-link>               
+                    </div>                        
+                </div>             
+            </div>
+            
+            <router-view></router-view>
+        </div>
+        
+    </div>
+</div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <script src="http://unpkg.com/vue"></script>
+
+<script src="http://unpkg.com/vuex"></script>
+<script src="http://unpkg.com/vue-router"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+<script src="{% static 'assets/corp/index.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/2.6.1/fuse.min.js"></script>
+    
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+
+				var acc = document.getElementsByClassName("accordion");
+			var i;
+
+			for (i = 0; i < acc.length; i++) {
+				acc[i].addEventListener("click", function() {
+					this.classList.toggle("activeItem");
+					var panel = this.nextElementSibling;
+					if (panel.style.maxHeight) {
+						  panel.style.maxHeight = null;
+					} else {
+						  console.log(panel.scrollHeight);
+						  panel.style.maxHeight = panel.scrollHeight + "px";
+					}
+				});
+			}
+var elem = document.documentElement;
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
+
+
+$(document).ready(function(){
+  $(".slide-toggle").click(function(){
+    $(".box").animate({
+      width: "toggle"
+    });
+  });
+    
+$(".emp-slide-toggle").click(function(){
+    $(".emp-box").animate({
+      width: "toggle"
+    });
+  });
+
+$(".W-slide-toggle").click(function(){
+    $(".W-box").animate({
+      width: "toggle"
+    });
+  });
+});
+
+    </script>
+<script>
+google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['GIRL',     11],
+          ['BOY',      2],
+        ]);
+
+        var options = {
+          title: 'CURRENT DAY'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+        
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart.draw(data, options);
+        var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
+
+        chart.draw(data, options);
+        var chart = new google.visualization.PieChart(document.getElementById('piechart4'));
+
+        chart.draw(data, options);
+        var chart = new google.visualization.PieChart(document.getElementById('piechart5'));
+
+        chart.draw(data, options);
+        var chart = new google.visualization.PieChart(document.getElementById('piechart6'));
+
+        chart.draw(data, options);
+      }
+
+
+</script>
+  
+
+</body>
+
+</html>
