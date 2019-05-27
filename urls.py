@@ -1,0 +1,71 @@
+
+from django.conf.urls import url
+from .views import (ConfigureValues,
+                    ProductHomeView, 
+                    GRNView,
+                    CurrentStockView,
+                    TransferView,
+                    InvardView,
+                    SalesHomeView,
+                    SalesReportView,
+                    MovementView,
+                    BestSellingView,
+                    DiscountView,
+                    CustomerDataView,
+                    LoyalityView,
+                    StaffView,
+                    AttendenceView,
+                    StoreExpensesView,
+                    DSRView,
+                    StatementsView,
+                    AboutNuberryView,
+                    BrandFilesView,
+                    SOPGuidlinesView,
+                    StoreAssetsView,
+                    NotificationView,
+                    StoreActions,
+                    ProductListView,
+                    SalesConfigurationsView,
+                    MarketingConfigureDate,
+                    
+                    CorporateView,
+                    product_file_view,
+                    )
+
+urlpatterns = [
+    url('corporate/$', CorporateView.as_view(), name='corporate'),
+    url('upload-products/$', product_file_view, name='product_upload'),
+    url('product-home/$', ProductHomeView.as_view(), name='product-home'),
+    url('product-list/$', ProductListView.as_view(), name='product-list-view'),
+    url('configure-values/$', ConfigureValues.as_view(), name='configure-values'),
+    url('grn/$', GRNView.as_view(), name='grn'),
+    url('current-stock/$', CurrentStockView.as_view(), name='corporate-current-stock-view'),
+    url('corporate-transfer/$', TransferView.as_view(), name='corporate-transfer-view'),
+    url('corporate-invard/$', InvardView.as_view(), name='corporate-inward-view'),
+    url('store-actions/$', StoreActions.as_view(), name='store-actions'),
+        
+    url('sales-configurations/$', SalesConfigurationsView.as_view(), name='sales_configurations_view'),
+    url('sales-home/$', SalesHomeView.as_view(), name='sales-home'),
+    url('sales-home/report$', SalesReportView.as_view(), name='sales-report_view'),
+    url('movement/$', MovementView.as_view(), name='movement-report_view'),
+    url('best-selling/$', BestSellingView.as_view(), name='best-selling_view'),
+    
+    url('marketing-configurations/$',  MarketingConfigureDate.as_view(), name='marketing_configurations_view'),
+    url('discounts/$', DiscountView.as_view(), name='discount_view'),
+    url('customer-data/$', CustomerDataView.as_view(), name='customer_data_view'),
+    url('loyality/$', LoyalityView.as_view(), name='loyality_view'),
+    
+    url('staff/$', StaffView.as_view(), name='staff_view'),
+    url('attendence$', AttendenceView.as_view(), name='attendence_view'),
+
+    url('store-expenses/$', StoreExpensesView.as_view(), name='store_expenses_view'),
+    url('dsr/$', DSRView.as_view(), name='dsr_view'),
+    url('statements/$', StatementsView.as_view(), name='statements_view'),
+    
+    url('about/$', AboutNuberryView.as_view(), name='about_view'),
+    url('brand-files/$', BrandFilesView.as_view(), name='brand_files_view'),
+    url('sop-guide-lines/$', SOPGuidlinesView.as_view(), name='sop-guidelines_view'),
+   
+    url('store-assets/$', StoreAssetsView.as_view(),name='store_assets_view'),
+    url('notifications/$', NotificationView.as_view(), name='notifications_view'),       
+]
